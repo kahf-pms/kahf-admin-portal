@@ -4,6 +4,7 @@ import ErrorPage from "./pages/error/ErrorPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import PropertiesPage from "./pages/properties/PropertiesPage";
 import PropertyPage from "./pages/properties/PropertyPage";
+import AddPropertyPage from "./pages/properties/AddPropertyPage";
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 
 				<Route path="properties">
 					<Route index element={<PropertiesPage />} />
+					<Route path="add" element={<AddPropertyPage />} />
 					<Route path=":propertyId" element={<PropertyPage />} />
 				</Route>
 			</Route>
