@@ -19,7 +19,7 @@ export const StyledNav = styled.nav`
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		padding: 1rem;
+		padding: 0.75rem 1rem;
 		border-radius: 8px;
 
 		svg {
