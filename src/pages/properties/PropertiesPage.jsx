@@ -1,7 +1,5 @@
-import Container from "../../features/ui/container/Container";
-
 const PropertiesPage = () => {
-	return <Container></Container>;
+	return <h3>Properties Page</h3>;
 };
 
 export default PropertiesPage;
