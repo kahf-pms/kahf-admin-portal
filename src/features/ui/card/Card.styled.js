@@ -7,5 +7,5 @@ export const StyledCard = styled.div`
 	border: 1px solid var(--primary-gray);
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 2rem;
 `;

@@ -11,7 +11,8 @@ export const StyledInput = styled.div`
 		color: var(--text-gray);
 	}
 
-	& input {
+	& input,
+	& select {
 		width: 100%;
 		font-size: 1rem;
 		padding: 0.5rem;

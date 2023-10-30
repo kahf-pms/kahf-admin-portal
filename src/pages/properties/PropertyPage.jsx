@@ -93,7 +93,6 @@ const PropertyPage = () => {
 		<>
 			<Card>
 				<div className="row sb">
-					<h3>General Information</h3>
 					<div className="row gap05">
 						{canEdit ? (
 							<>
@@ -117,130 +116,144 @@ const PropertyPage = () => {
 						)}
 					</div>
 				</div>
-				<div className="formGrid">
-					<Input>
-						<label htmlFor="name">Name</label>
-						<input
-							disabled={!canEdit}
-							id="name"
-							type="text"
-							value={propertyForm.name}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									name: e.target.value,
-								})
-							}
-						/>
-					</Input>
-					<Input>
-						<label htmlFor="type">Type</label>
-						<input
-							disabled={!canEdit}
-							id="type"
-							type="text"
-							value={propertyForm.type}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									type: e.target.value,
-								})
-							}
-						/>
-					</Input>
-				</div>
-				<div className="formGrid">
-					<Input>
-						<label htmlFor="street">Street</label>
-						<input
-							disabled={!canEdit}
-							id="street"
-							type="text"
-							value={propertyForm.address.street}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									address: {
-										...propertyForm.address,
-										street: e.target.value,
-									},
-								})
-							}
-						/>
-					</Input>
-					<Input>
-						<label htmlFor="city">City</label>
-						<input
-							disabled={!canEdit}
-							id="city"
-							type="text"
-							value={propertyForm.address.city}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									address: {
-										...propertyForm.address,
-										city: e.target.value,
-									},
-								})
-							}
-						/>
-					</Input>
-					<Input>
-						<label htmlFor="state">State</label>
-						<input
-							disabled={!canEdit}
-							id="state"
-							type="text"
-							value={propertyForm.address.state}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									address: {
-										...propertyForm.address,
-										state: e.target.value,
-									},
-								})
-							}
-						/>
-					</Input>
-					<Input>
-						<label htmlFor="country">Country</label>
-						<input
-							disabled={true}
-							id="country"
-							type="text"
-							value={propertyForm.address.country}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									address: {
-										...propertyForm.address,
-										country: e.target.value,
-									},
-								})
-							}
-						/>
-					</Input>
-					<Input>
-						<label htmlFor="zipcode">Zip Code</label>
-						<input
-							disabled={!canEdit}
-							id="zipcode"
-							type="text"
-							value={propertyForm.address.zipcode}
-							onChange={(e) =>
-								setPropertyForm({
-									...propertyForm,
-									address: {
-										...propertyForm.address,
-										zipcode: e.target.value,
-									},
-								})
-							}
-						/>
-					</Input>
-				</div>
+
+				<section className="column gap1">
+					<h3>General Information</h3>
+					<div className="formGrid">
+						<Input>
+							<label htmlFor="name">Name</label>
+							<input
+								disabled={!canEdit}
+								id="name"
+								type="text"
+								value={propertyForm.name}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										name: e.target.value,
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="type">Type</label>
+							<select
+								disabled={!canEdit}
+								id="type"
+								value={propertyForm.type}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										type: e.target.value,
+									})
+								}
+							>
+								<option value="Single Family">
+									Single Family
+								</option>
+								<option value="Duplex">Duplex</option>
+								<option value="Multi Family">
+									Multi Family
+								</option>
+							</select>
+						</Input>
+					</div>
+				</section>
+				<section className="column gap1">
+					<h3>Address</h3>
+					<div className="formGrid">
+						<Input>
+							<label htmlFor="street">Street</label>
+							<input
+								disabled={!canEdit}
+								id="street"
+								type="text"
+								value={propertyForm.address.street}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										address: {
+											...propertyForm.address,
+											street: e.target.value,
+										},
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="city">City</label>
+							<input
+								disabled={!canEdit}
+								id="city"
+								type="text"
+								value={propertyForm.address.city}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										address: {
+											...propertyForm.address,
+											city: e.target.value,
+										},
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="state">State</label>
+							<input
+								disabled={!canEdit}
+								id="state"
+								type="text"
+								value={propertyForm.address.state}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										address: {
+											...propertyForm.address,
+											state: e.target.value,
+										},
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="country">Country</label>
+							<input
+								disabled={true}
+								id="country"
+								type="text"
+								value={propertyForm.address.country}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										address: {
+											...propertyForm.address,
+											country: e.target.value,
+										},
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="zipcode">Zip Code</label>
+							<input
+								disabled={!canEdit}
+								id="zipcode"
+								type="text"
+								value={propertyForm.address.zipcode}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										address: {
+											...propertyForm.address,
+											zipcode: e.target.value,
+										},
+									})
+								}
+							/>
+						</Input>
+					</div>
+				</section>
 			</Card>
 		</>
 	);
