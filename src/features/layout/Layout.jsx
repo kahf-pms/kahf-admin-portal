@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { StyledBody } from "./Layout.styled";
 import SideNav from "./sideNav/SideNav";
-import Header from "./header/Header";
+// import Header from "./header/Header";
 import Container from "../ui/container/Container";
 
 const Layout = () => {
@@ -9,7 +9,7 @@ const Layout = () => {
 		<StyledBody>
 			<SideNav />
 			<section className="mainContent">
-				<Header />
+				{/* <Header /> */}
 				<Container>
 					<Outlet />
 				</Container>
