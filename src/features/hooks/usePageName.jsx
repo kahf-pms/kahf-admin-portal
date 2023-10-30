@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setPageName } from "../app/globalSlice";
+import { setCanGoBack, setPageName } from "../app/globalSlice";
 
-const usePageName = (pageName) => {
+const usePageName = (pageName, canGoBack = true) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(setPageName(pageName));
+		dispatch(setCanGoBack(canGoBack));
 	});
 };
 
