@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledHeader = styled.section`
+export const StyledLayoutTop = styled.header`
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
