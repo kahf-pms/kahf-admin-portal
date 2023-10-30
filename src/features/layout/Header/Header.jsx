@@ -1,16 +1,17 @@
 import { useSelector } from "react-redux";
 import { StyledHeader } from "./Header.styled";
 import { getPageName } from "../../app/globalSlice";
+import { MdArrowBack } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+	const navigate = useNavigate();
 	const pageName = useSelector(getPageName);
 
 	return (
 		<StyledHeader>
-			<div>
-				<p className="breadcrumb">Test / Test / Test</p>
-				<h3>{pageName}</h3>
-			</div>
+			<MdArrowBack onClick={() => navigate(-1)} />
+			<h3>{pageName}</h3>
 		</StyledHeader>
 	);
 };

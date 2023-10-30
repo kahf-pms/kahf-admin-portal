@@ -3,14 +3,15 @@ import styled from "styled-components";
 export const StyledHeader = styled.header`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	gap: 1rem;
 	align-items: center;
-	padding: 1rem 3rem;
-	border-bottom: 1px solid whitesmoke;
+	padding: 1rem 2rem;
+	background-color: white;
+	border-bottom: 1px solid var(--primary-gray);
 
-	.breadcrumb {
-		color: var(--text-gray);
-		font-size: 12px;
-		font-weight: 500;
+	svg {
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
 	}
 `;

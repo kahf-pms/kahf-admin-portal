@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap");
 
 :root {
+	--primary: #5352ed;
 	--primary-dark-bg: #121212;
 	--text-gray: #676767;
-	--blue: #0984e3;
+	--primary-gray: #e1e2e3;
+	--off-white: #f0f1f4;
 }
 
 * {
@@ -43,4 +45,41 @@ h3 {
 
 h4 {
 	font-size: 18px;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+.sb {
+	justify-content: space-between;
+}
+
+.gap05 {
+	gap: 0.5rem;
+}
+
+.gap1 {
+	gap: 1rem;
+}
+
+.gap2 {
+	gap: 2rem;
+}
+
+.gap3 {
+	gap: 3rem;
+}
+
+.formGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 1rem;
 }

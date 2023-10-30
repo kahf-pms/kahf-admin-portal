@@ -34,7 +34,7 @@ export const StyledNav = styled.nav`
 
 		&.active {
 			color: white;
-			background: rgba(255, 255, 255, 0.05);
+			background: var(--primary);
 		}
 	}
 

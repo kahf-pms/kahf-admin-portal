@@ -8,5 +8,6 @@ export const StyledBody = styled.main`
 
 	section.mainContent {
 		width: 100%;
+		background: var(--off-white);
 	}
 `;

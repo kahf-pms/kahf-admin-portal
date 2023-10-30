@@ -1,6 +1,6 @@
 import { StyledButton } from "./Button.styled";
 
-const Button = ({ buttonProps, children, onClick }) => {
+const Button = ({ buttonProps, children, onClick, type }) => {
 	const handleClick = () => {
 		if (onClick) {
 			onClick();
@@ -8,7 +8,7 @@ const Button = ({ buttonProps, children, onClick }) => {
 	};
 
 	return (
-		<StyledButton onClick={handleClick} {...buttonProps}>
+		<StyledButton type={type} onClick={handleClick} {...buttonProps}>
 			{children}
 		</StyledButton>
 	);

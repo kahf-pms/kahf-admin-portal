@@ -6,7 +6,8 @@ export const StyledButton = styled.button`
 	border-radius: 8px;
 	outline: none;
 	border: none;
-	background: var(--blue);
+	background: ${(props) =>
+		props.type === "warn" ? "#ff4757" : "var(--primary)"};
 	color: white;
 	letter-spacing: 0.2px;
 	cursor: pointer;
