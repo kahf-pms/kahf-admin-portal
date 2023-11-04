@@ -93,6 +93,7 @@ const PropertyPage = () => {
 		<>
 			<Card>
 				<div className="row sb">
+					<span></span>
 					<div className="row gap05">
 						{canEdit ? (
 							<>
@@ -118,7 +119,7 @@ const PropertyPage = () => {
 				</div>
 
 				<section className="column gap1">
-					<h3>General Information</h3>
+					<h4>General Information</h4>
 					<div className="formGrid">
 						<Input>
 							<label htmlFor="name">Name</label>
@@ -160,7 +161,7 @@ const PropertyPage = () => {
 					</div>
 				</section>
 				<section className="column gap1">
-					<h3>Address</h3>
+					<h4>Address</h4>
 					<div className="formGrid">
 						<Input>
 							<label htmlFor="street">Street</label>
