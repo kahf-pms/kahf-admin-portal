@@ -13,6 +13,13 @@ const isInvalid = (obj) => {
 			country: Joi.string().valid("United States").required(),
 			zipcode: Joi.string().required(),
 		}).required(),
+		size: Joi.string(),
+		yearBuilt: Joi.string(),
+		purchaseDate: Joi.string(),
+		purchasePrice: Joi.number(),
+		units: Joi.array(),
+		owners: Joi.array(),
+		managers: Joi.array(),
 	});
 
 	const { error } = schema.validate(obj);

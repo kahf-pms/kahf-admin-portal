@@ -7,12 +7,25 @@ import { useEffect, useState } from "react";
 import getAllProperties from "../../features/api/properties/getAllProperties";
 import usePageName from "../../features/hooks/usePageName";
 import Card from "../../features/ui/card/Card";
+import Grid from "../../features/ui/grid/Grid";
+import PropertyCard from "../../features/property/propertyCard/PropertyCard";
 
 const PropertiesPage = () => {
+	usePageName("All Properties");
 	const navigate = useNavigate();
 	const [properties, setProperties] = useState(null);
+	const [isLaptop, setIsLaptop] = useState(window.innerWidth > 1200);
 
-	usePageName("All Properties");
+	useEffect(() => {
+		const handleResize = () => {
+			setIsLaptop(window.innerWidth > 1200);
+		};
+
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 
 	useEffect(() => {
 		const fetchProperties = async () => {
@@ -36,45 +49,52 @@ const PropertiesPage = () => {
 	return (
 		<Card>
 			<ControlBar>
-				<SearchBar />
 				<Button onClick={() => navigate("/properties/add")}>
 					Add Property
 				</Button>
 			</ControlBar>
-			<Table
-				columns={[
-					{ field: "name", headerName: "Name", width: 150 },
-					{
-						field: "street",
-						headerName: "Street",
-						width: 200,
-					},
-					{ field: "city", headerName: "City", width: 150 },
-					{ field: "state", headerName: "State", width: 100 },
-					{
-						field: "zipcode",
-						headerName: "Zip Code",
-						width: 100,
-					},
-					{
-						field: "rent",
-						headerName: "Monthly Rent",
-						width: 150,
-					},
-				]}
-				rows={properties?.map((property) => ({
-					id: property?._id,
-					name: property?.name,
-					street: property?.address?.street,
-					city: property?.address?.city,
-					state: property?.address?.state,
-					zipcode: property?.address?.zipcode,
-					rent: "$1,234",
-				}))}
-				tableOptions={{
-					onRowClick: handleRowClick,
-				}}
-			/>
+			{isLaptop ? (
+				<Table
+					columns={[
+						{ field: "name", headerName: "Name", width: 150 },
+						{
+							field: "street",
+							headerName: "Street",
+							width: 200,
+						},
+						{ field: "city", headerName: "City", width: 150 },
+						{ field: "state", headerName: "State", width: 100 },
+						{
+							field: "zipcode",
+							headerName: "Zip Code",
+							width: 100,
+						},
+						{
+							field: "rent",
+							headerName: "Monthly Rent",
+							width: 150,
+						},
+					]}
+					rows={properties?.map((property) => ({
+						id: property?._id,
+						name: property?.name,
+						street: property?.address?.street,
+						city: property?.address?.city,
+						state: property?.address?.state,
+						zipcode: property?.address?.zipcode,
+						rent: "$1,234",
+					}))}
+					tableOptions={{
+						onRowClick: handleRowClick,
+					}}
+				/>
+			) : (
+				<Grid>
+					{properties.map((property) => (
+						<PropertyCard key={property._id} property={property} />
+					))}
+				</Grid>
+			)}
 		</Card>
 	);
 };

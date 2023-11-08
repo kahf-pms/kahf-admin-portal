@@ -34,6 +34,12 @@ const PropertyPage = () => {
 					country: response.data?.address?.country,
 					zipcode: response.data?.address?.zipcode,
 				},
+				size: response.data?.size,
+				yearBuilt: response.data?.yearBuilt,
+				purchaseDate: response.data?.purchaseDate,
+				units: response.data?.units,
+				owners: response.data?.owners,
+				managers: response.data?.managers,
 			});
 		} catch (err) {
 			console.error(err.message);
@@ -133,7 +139,6 @@ const PropertyPage = () => {
 						)}
 					</div>
 				</div>
-
 				<section className="column gap1">
 					<h4>General Information</h4>
 					<div className="formGrid">
@@ -142,7 +147,6 @@ const PropertyPage = () => {
 							<input
 								disabled={!canEdit}
 								id="name"
-								type="text"
 								value={propertyForm.name}
 								onChange={(e) =>
 									setPropertyForm({
@@ -184,7 +188,6 @@ const PropertyPage = () => {
 							<input
 								disabled={!canEdit}
 								id="street"
-								type="text"
 								value={propertyForm.address.street}
 								onChange={(e) =>
 									setPropertyForm({
@@ -202,7 +205,6 @@ const PropertyPage = () => {
 							<input
 								disabled={!canEdit}
 								id="city"
-								type="text"
 								value={propertyForm.address.city}
 								onChange={(e) =>
 									setPropertyForm({
@@ -220,7 +222,6 @@ const PropertyPage = () => {
 							<input
 								disabled={!canEdit}
 								id="state"
-								type="text"
 								value={propertyForm.address.state}
 								onChange={(e) =>
 									setPropertyForm({
@@ -238,7 +239,6 @@ const PropertyPage = () => {
 							<input
 								disabled={true}
 								id="country"
-								type="text"
 								value={propertyForm.address.country}
 								onChange={(e) =>
 									setPropertyForm({
@@ -256,7 +256,6 @@ const PropertyPage = () => {
 							<input
 								disabled={!canEdit}
 								id="zipcode"
-								type="text"
 								value={propertyForm.address.zipcode}
 								onChange={(e) =>
 									setPropertyForm({
@@ -265,6 +264,72 @@ const PropertyPage = () => {
 											...propertyForm.address,
 											zipcode: e.target.value,
 										},
+									})
+								}
+							/>
+						</Input>
+					</div>
+				</section>
+				<section className="column gap1">
+					<h4>Property Information</h4>
+					<div className="formGrid">
+						<Input>
+							<label htmlFor="yearBuilt">Year Built</label>
+							<input
+								disabled={!canEdit}
+								id="yearBuilt"
+								value={propertyForm.yearBuilt}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										yearBuilt: e.target.value,
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="purchaseDate">Purchase Date</label>
+							<input
+								disabled={!canEdit}
+								id="purchaseDate"
+								type="date"
+								value={propertyForm.purchaseDate}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										purchaseDate: e.target.value,
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="purchasePrice">
+								Purchase Price
+							</label>
+							<input
+								disabled={!canEdit}
+								id="purchasePrice"
+								type="number"
+								value={propertyForm.purchasePrice}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										purchasePrice: e.target.value,
+									})
+								}
+							/>
+						</Input>
+						<Input>
+							<label htmlFor="size">Lot Size</label>
+							<input
+								disabled={!canEdit}
+								id="size"
+								type="text"
+								value={propertyForm.size}
+								onChange={(e) =>
+									setPropertyForm({
+										...propertyForm,
+										size: e.target.value,
 									})
 								}
 							/>
