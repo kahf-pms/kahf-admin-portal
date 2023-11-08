@@ -1,6 +1,6 @@
 import { StyledButton } from "./Button.styled";
 
-const Button = ({ buttonProps, children, onClick, type }) => {
+const Button = ({ buttonProps, loading, children, onClick, type }) => {
 	const handleClick = () => {
 		if (onClick) {
 			onClick();
@@ -8,8 +8,13 @@ const Button = ({ buttonProps, children, onClick, type }) => {
 	};
 
 	return (
-		<StyledButton type={type} onClick={handleClick} {...buttonProps}>
-			{children}
+		<StyledButton
+			type={type}
+			onClick={handleClick}
+			{...buttonProps}
+			disabled={loading}
+		>
+			{loading ? "Loading..." : children}
 		</StyledButton>
 	);
 };
