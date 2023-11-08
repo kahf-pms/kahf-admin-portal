@@ -8,4 +8,10 @@ export const StyledCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+
+	@media (max-width: 450px) {
+		padding: 1rem;
+		gap: 1rem;
+		gap: 3rem;
+	}
 `;

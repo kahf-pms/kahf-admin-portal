@@ -14,4 +14,12 @@ export const StyledLayoutTop = styled.header`
 		height: 30px;
 		cursor: pointer;
 	}
+
+	@media (max-width: 1024px) {
+		padding: 1rem;
+	}
+
+	@media (max-width: 450px) {
+		padding: 0.5rem;
+	}
 `;

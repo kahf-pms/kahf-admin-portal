@@ -32,6 +32,11 @@ body {
 	flex-direction: column;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 h1 {
 	font-size: 60px;
 }
@@ -83,4 +88,26 @@ h4 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 1rem;
+}
+
+.bold {
+	font-weight: 500;
+}
+
+.sm {
+	font-size: 14px;
+	color: var(--text-gray);
+}
+
+@media (max-width: 1024px) {
+	.formGrid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 768px) {
+	.formGrid {
+		grid-template-columns: 1fr;
+		grid-gap: 0.5rem;
+	}
 }

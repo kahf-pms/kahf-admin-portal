@@ -11,9 +11,9 @@ const PropertyCard = ({ property }) => {
 	return (
 		<StyledPropertyCard onClick={handleClick}>
 			<div>
-				<h4>{property.name}</h4>
-				<p>{property.address.street}</p>
-				<p>{`${property.address.city}, ${property.address.state} ${property.address.zipcode}`}</p>
+				<p className="bold">{property.name}</p>
+				<p className="sm">{property.address.street}</p>
+				<p className="sm">{`${property.address.city}, ${property.address.state} ${property.address.zipcode}`}</p>
 			</div>
 		</StyledPropertyCard>
 	);

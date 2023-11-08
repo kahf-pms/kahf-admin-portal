@@ -3,7 +3,7 @@ import usePageName from "../../features/hooks/usePageName";
 const DashboardPage = () => {
 	usePageName("Admin Dashboard", false);
 
-	return <></>;
+	return;
 };
 
 export default DashboardPage;
