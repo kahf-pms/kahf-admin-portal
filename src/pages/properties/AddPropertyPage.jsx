@@ -4,37 +4,29 @@ import Button from "../../features/ui/button/Button";
 import Card from "../../features/ui/card/Card";
 import Input from "../../features/ui/input/Input";
 import addProperty from "../../features/api/properties/addProperty";
+import isInvalid from "../../features/property/validation";
+import propertyModel from "../../features/property/model";
 
 const AddPropertyPage = () => {
+	const [loading, setLoading] = useState(false);
+	const [propertyForm, setPropertyForm] = useState(propertyModel);
 	usePageName("Add Property");
 
-	const [propertyForm, setPropertyForm] = useState({
-		name: "",
-		type: "Single Family",
-		address: {
-			street: "",
-			city: "",
-			state: "",
-			country: "United States",
-			zipcode: "",
-		},
-	});
-
 	const handleAddProperty = async () => {
-		if (!propertyForm.name) return alert("Name is required.");
-		if (!propertyForm.type) return alert("Type is required.");
-		if (!propertyForm.address.street) return alert("Street is required.");
-		if (!propertyForm.address.city) return alert("City is required.");
-		if (!propertyForm.address.state) return alert("State is required.");
-		if (!propertyForm.address.country) return alert("Country is required.");
-		if (!propertyForm.address.zipcode)
-			return alert("Zip Code is required.");
+		setLoading(true);
 
 		try {
-			const response = await addProperty("", propertyForm);
-			console.log(response.data);
+			const error = isInvalid(propertyForm);
+			if (error) return alert(error);
+
+			await addProperty("", propertyForm);
+
+			alert("Property has been added.");
+			setPropertyForm(propertyModel);
 		} catch (err) {
 			console.warn(err.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -42,7 +34,9 @@ const AddPropertyPage = () => {
 		<Card>
 			<div className="row sb">
 				<span></span>
-				<Button onClick={handleAddProperty}>Add Property</Button>
+				<Button loading={loading} onClick={handleAddProperty}>
+					Add Property
+				</Button>
 			</div>
 			<section className="column gap1">
 				<h4>General Information</h4>

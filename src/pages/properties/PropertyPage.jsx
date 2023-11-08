@@ -7,25 +7,16 @@ import Button from "../../features/ui/button/Button";
 import deletePropertyById from "../../features/api/properties/deletePropertyById";
 import Input from "../../features/ui/input/Input";
 import updatePropertyById from "../../features/api/properties/updatePropertyById";
+import propertyModel from "../../features/property/model";
+import isInvalid from "../../features/property/validation";
 
 const PropertyPage = () => {
 	const navigate = useNavigate();
 	const { propertyId } = useParams();
+	const [loading, setLoading] = useState(false);
 	const [property, setProperty] = useState(null);
 	const [canEdit, setCanEdit] = useState(false);
-
-	const [propertyForm, setPropertyForm] = useState({
-		name: "",
-		type: "",
-		address: {
-			street: "",
-			city: "",
-			state: "",
-			country: "United States",
-			zipcode: "",
-		},
-	});
-
+	const [propertyForm, setPropertyForm] = useState(propertyModel);
 	usePageName(`Properties / ${property?.name}`);
 
 	const fetchProperty = async () => {
@@ -54,36 +45,52 @@ const PropertyPage = () => {
 	}, []);
 
 	const handleDeleteProperty = async () => {
+		setLoading(true);
 		try {
-			const result = confirm(
-				"Are you sure you want to delete this property? This action cannot be undone."
+			const result = prompt(
+				'WARNING: This action cannot be undone! To confirm, type "delete".'
 			);
-			if (result) {
+			if (result === "delete") {
 				await deletePropertyById("", propertyId);
 				navigate(-1);
+			} else {
+				alert("Property was not deleted.");
 			}
 		} catch (err) {
 			console.error(err.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	const handleCancel = async () => {
-		await fetchProperty();
-		setCanEdit(false);
+		try {
+			setLoading(true);
+			await fetchProperty();
+		} catch (err) {
+			console.warn(err.message);
+		} finally {
+			setLoading(false);
+			setCanEdit(false);
+		}
 	};
 
 	const handleSaveProperty = async () => {
+		setLoading(true);
+
 		try {
-			const response = await updatePropertyById(
-				"",
-				propertyId,
-				propertyForm
-			);
+			const error = isInvalid(propertyForm);
+			if (error) return alert(error);
+
+			await updatePropertyById("", propertyId, propertyForm);
+
 			await fetchProperty();
+			alert("Property has been updated.");
 		} catch (err) {
 			console.error(err.message);
 		} finally {
 			setCanEdit(false);
+			setLoading(false);
 		}
 	};
 
@@ -97,8 +104,16 @@ const PropertyPage = () => {
 					<div className="row gap05">
 						{canEdit ? (
 							<>
-								<Button onClick={handleCancel}>Cancel</Button>
-								<Button onClick={handleSaveProperty}>
+								<Button
+									loading={loading}
+									onClick={handleCancel}
+								>
+									Cancel
+								</Button>
+								<Button
+									loading={loading}
+									onClick={handleSaveProperty}
+								>
 									Save
 								</Button>
 							</>
@@ -107,12 +122,13 @@ const PropertyPage = () => {
 								<Button onClick={() => setCanEdit(true)}>
 									Edit
 								</Button>
-								{/* <Button
+								<Button
+									loading={loading}
 									onClick={handleDeleteProperty}
 									type="warn"
 								>
 									Delete
-								</Button> */}
+								</Button>
 							</>
 						)}
 					</div>

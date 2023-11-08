@@ -16,6 +16,7 @@
 		"@mui/x-data-grid": "^6.17.0",
 		"@reduxjs/toolkit": "^1.9.7",
 		"axios": "^1.6.0",
+		"joi": "^17.11.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.11.0",
