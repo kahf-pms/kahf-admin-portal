@@ -12,6 +12,6 @@ export const StyledCard = styled.div`
 	@media (max-width: 450px) {
 		padding: 1rem;
 		gap: 1rem;
-		gap: 3rem;
+		gap: 2rem;
 	}
 `;
