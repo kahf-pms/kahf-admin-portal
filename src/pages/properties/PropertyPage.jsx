@@ -9,6 +9,8 @@ import Input from "../../features/ui/input/Input";
 import updatePropertyById from "../../features/api/properties/updatePropertyById";
 import propertyModel from "../../features/property/model";
 import isInvalid from "../../features/property/validation";
+import SingleFamilyUnit from "../../features/property/singleFamilyUnit/SingleFamilyUnit";
+import MultiFamilyUnit from "../../features/property/multiFamilyUnit/MultiFamilyUnit";
 
 const PropertyPage = () => {
 	const navigate = useNavigate();
@@ -42,7 +44,7 @@ const PropertyPage = () => {
 				managers: response.data?.managers,
 			});
 		} catch (err) {
-			console.error(err.message);
+			console.warn(err.message);
 		}
 	};
 
@@ -70,8 +72,8 @@ const PropertyPage = () => {
 	};
 
 	const handleCancel = async () => {
+		setLoading(true);
 		try {
-			setLoading(true);
 			await fetchProperty();
 		} catch (err) {
 			console.warn(err.message);
@@ -93,7 +95,7 @@ const PropertyPage = () => {
 			await fetchProperty();
 			alert("Property has been updated.");
 		} catch (err) {
-			console.error(err.message);
+			console.warn(err.message);
 		} finally {
 			setCanEdit(false);
 			setLoading(false);
@@ -105,42 +107,36 @@ const PropertyPage = () => {
 	return (
 		<>
 			<Card>
-				<div className="row sb">
-					<span></span>
-					<div className="row gap05">
-						{canEdit ? (
-							<>
-								<Button
-									loading={loading}
-									onClick={handleCancel}
-								>
-									Cancel
-								</Button>
-								<Button
-									loading={loading}
-									onClick={handleSaveProperty}
-								>
-									Save
-								</Button>
-							</>
-						) : (
-							<>
-								<Button onClick={() => setCanEdit(true)}>
-									Edit
-								</Button>
-								<Button
-									loading={loading}
-									onClick={handleDeleteProperty}
-									type="warn"
-								>
-									Delete
-								</Button>
-							</>
-						)}
-					</div>
+				<h3>General Information</h3>
+				<div className="row gap05">
+					{canEdit ? (
+						<>
+							<Button loading={loading} onClick={handleCancel}>
+								Cancel
+							</Button>
+							<Button
+								loading={loading}
+								onClick={handleSaveProperty}
+							>
+								Save
+							</Button>
+						</>
+					) : (
+						<>
+							<Button onClick={() => setCanEdit(true)}>
+								Edit
+							</Button>
+							<Button
+								loading={loading}
+								onClick={handleDeleteProperty}
+								type="warn"
+							>
+								Delete
+							</Button>
+						</>
+					)}
 				</div>
 				<section className="column gap1">
-					<h4>General Information</h4>
 					<div className="formGrid">
 						<Input>
 							<label htmlFor="name">Name</label>
@@ -337,6 +333,11 @@ const PropertyPage = () => {
 					</div>
 				</section>
 			</Card>
+			{property.type === "Single Family" ? (
+				<SingleFamilyUnit property={property} units={property.units} />
+			) : (
+				<MultiFamilyUnit />
+			)}
 		</>
 	);
 };

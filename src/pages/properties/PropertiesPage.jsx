@@ -9,6 +9,7 @@ import usePageName from "../../features/hooks/usePageName";
 import Card from "../../features/ui/card/Card";
 import Grid from "../../features/ui/grid/Grid";
 import PropertyCard from "../../features/property/propertyCard/PropertyCard";
+import convertToDollar from "../../features/utils/convertToDollar";
 
 const PropertiesPage = () => {
 	usePageName("All Properties");
@@ -82,7 +83,7 @@ const PropertiesPage = () => {
 						city: property?.address?.city,
 						state: property?.address?.state,
 						zipcode: property?.address?.zipcode,
-						rent: "$1,234",
+						rent: convertToDollar(property?.units[0]?.rent),
 					}))}
 					tableOptions={{
 						onRowClick: handleRowClick,
